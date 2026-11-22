@@ -5,29 +5,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Restore GitHub Pages route and set language before first paint -->
-    <script>
-      (function () {
-        var base = "/EbharLine";
-        var params = new URLSearchParams(window.location.search);
-        var redirect = params.get("p");
-
-        if (redirect) {
-          window.history.replaceState(
-            null,
-            "",
-            base + redirect
-          );
-        }
-
-        var path = window.location.pathname.replace(/^\/EbharLine\/?/, "");
-        var en = path.split("/").filter(Boolean)[0] === "en";
-
-        document.documentElement.lang = en ? "en" : "ar";
-        document.documentElement.dir = en ? "ltr" : "rtl";
-      })();
-    </script>
-
     <!-- Favicon / Tab Logo -->
     <link rel="icon" href="%BASE_URL%favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="%BASE_URL%favicon-48.png" sizes="48x48" type="image/png" />

@@ -41,46 +41,13 @@ Sitemap: ${siteUrl}/sitemap.xml
   };
 }
 
-
-/*
- * GitHub Pages serves only real files. Generate /ar/ and /en/ entry pages
- * so refreshing either language URL does not return a 404.
- */
-function languageRoutePages() {
-  return {
-    name: "github-pages-language-route-pages",
-    apply: "build",
-    enforce: "post",
-    generateBundle(_options, bundle) {
-      const entry = bundle["index.html"];
-
-      if (!entry || entry.type !== "asset") {
-        this.error("Could not find the built index.html to generate language routes.");
-      }
-
-      const html =
-        typeof entry.source === "string"
-          ? entry.source
-          : Buffer.from(entry.source).toString("utf8");
-
-      for (const language of ["ar", "en"]) {
-        this.emitFile({
-          type: "asset",
-          fileName: `${language}/index.html`,
-          source: html,
-        });
-      }
-    },
-  };
-}
-
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
 
   const siteUrl = (env.VITE_SITE_URL || "https://www.example.com").replace(/\/+$/, "");
 
   return {
-    base: "/EbharLine/",
-    plugins: [react(), seoFiles(siteUrl), languageRoutePages()],
+    base: "/",
+    plugins: [react(), seoFiles(siteUrl)],
   };
 });
