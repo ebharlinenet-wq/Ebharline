@@ -21,12 +21,12 @@ const content = {
     home: "الرئيسية",
     sectors: "القطاعات",
     sectorsMenu: [
-      "الاستشارات الهندسية",
-      "إدارة المشاريع",
-      "الإنشاءات والمقاولات",
-      "البنية التحتية والطاقة",
-      "الخدمات اللوجستية",
-      "التدريب المهني",
+      ["الاستشارات الهندسية", "engineering-consultancy"],
+      ["إدارة المشاريع", "project-management"],
+      ["الإنشاءات والمقاولات", "construction-contracting"],
+      ["البنية التحتية والطاقة", "infrastructure-energy"],
+      ["الخدمات اللوجستية", "logistics-services"],
+      ["التدريب المهني", "professional-training"],
     ],
     fields: "مجالات المشاريع",
     fieldsMenu: ["المياه والبيئة", "أنظمة الطاقة", "الطرق والنقل"],
@@ -46,12 +46,12 @@ const content = {
     home: "Home",
     sectors: "Sectors",
     sectorsMenu: [
-      "Engineering Consultancy",
-      "Project Management",
-      "Construction & Contracting",
-      "Infrastructure & Energy",
-      "Logistics Services",
-      "Professional Training",
+      ["Engineering Consultancy", "engineering-consultancy"],
+      ["Project Management", "project-management"],
+      ["Construction & Contracting", "construction-contracting"],
+      ["Infrastructure & Energy", "infrastructure-energy"],
+      ["Logistics Services", "logistics-services"],
+      ["Professional Training", "professional-training"],
     ],
     fields: "Project Fields",
     fieldsMenu: ["Water & Environment", "Energy Systems", "Roads & Transport"],
@@ -69,6 +69,7 @@ export default function Header() {
   const t = content[lang];
 
   const basePath = import.meta.env.BASE_URL;
+  const homeUrl = `${basePath}${lang}`;
 
   const isMobile = useMediaQuery("(max-width: 1050px)");
 
@@ -190,6 +191,7 @@ export default function Header() {
       "",
       `${basePath}${lang}`
     );
+    window.dispatchEvent(new PopStateEvent("popstate"));
 
     window.scrollTo({
       top: 0,
@@ -225,7 +227,7 @@ export default function Header() {
 
               <a
                 className="nav-link is-active"
-                href="#home"
+                href={homeUrl}
                 aria-current="page"
               >
                 {t.home}
@@ -252,9 +254,9 @@ export default function Header() {
                 </button>
 
                 <ul className="submenu" id="sectors-menu">
-                  {t.sectorsMenu.map((label) => (
-                    <li key={label}>
-                      <a href="#sectors">{label}</a>
+                  {t.sectorsMenu.map(([label, slug]) => (
+                    <li key={slug}>
+                      <a href={`${basePath}${lang}/sectors/${slug}`}>{label}</a>
                     </li>
                   ))}
                 </ul>
@@ -283,13 +285,13 @@ export default function Header() {
                 <ul className="submenu" id="fields-menu">
                   {t.fieldsMenu.map((label) => (
                     <li key={label}>
-                      <a href="#fields">{label}</a>
+                      <a href={`${homeUrl}#fields`}>{label}</a>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <a className="nav-link" href="#events">
+              <a className="nav-link" href={`${homeUrl}#events`}>
                 {t.events}
               </a>
 

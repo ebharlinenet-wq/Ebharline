@@ -8,7 +8,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import RevealItem from "../Reveal/RevealItem";
 import { Chevron } from "../Icons/Icons";
-import { preventDemoNavigation } from "../../utils/demoLink";
+
 
 const SEGMENT_LENGTH = 36;
 const EDGE = 2;
@@ -73,9 +73,7 @@ export default function SectorCard({ item, lang, cta }) {
     <RevealItem
       as="a"
       className="el-sector-card"
-      href="#sectors"
-      data-demo-link
-      onClick={preventDemoNavigation}
+      href={`${import.meta.env.BASE_URL}${lang}/sectors/${item.slug}`}
     >
       <span ref={frameRef} className="el-sector-card__frame" aria-hidden="true">
         {/* Original stroke (hidden by the final CSS, kept for parity) */}

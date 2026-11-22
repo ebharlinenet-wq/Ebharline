@@ -25,6 +25,7 @@ const content = {
 const sectors = [
   {
     id: "engineering-consultancy",
+    slug: "engineering-consultancy",
     image: images.engineeringConsultancy,
     ar: {
       alt: "مخططات هندسية",
@@ -40,6 +41,7 @@ const sectors = [
   },
   {
     id: "project-management",
+    slug: "project-management",
     image: images.projectManagement,
     ar: {
       alt: "إدارة مشروع إنشائي",
@@ -55,6 +57,7 @@ const sectors = [
   },
   {
     id: "construction",
+    slug: "construction-contracting",
     image: images.construction,
     ar: {
       alt: "موقع إنشاءات",
@@ -70,6 +73,7 @@ const sectors = [
   },
   {
     id: "infrastructure-energy",
+    slug: "infrastructure-energy",
     image: images.energy,
     ar: {
       alt: "منظومة بنية تحتية للطاقة",
@@ -85,6 +89,7 @@ const sectors = [
   },
   {
     id: "logistics",
+    slug: "logistics-services",
     image: images.logistics,
     ar: {
       alt: "ميناء وحاويات شحن",
@@ -100,6 +105,7 @@ const sectors = [
   },
   {
     id: "professional-training",
+    slug: "professional-training",
     image: images.professionalTraining,
     ar: {
       alt: "تدريب مهني",

@@ -66,7 +66,13 @@ export function LanguageProvider({ children }) {
     (next) => {
       if (next === lang || !LANGS[next]) return;
 
-      window.history.pushState(null, "", languagePath(next));
+      const currentPath = window.location.pathname;
+      const base = BASE_PATH;
+      const withoutBase = currentPath.startsWith(`${base}/`)
+        ? currentPath.slice(base.length)
+        : currentPath;
+      const suffix = withoutBase.replace(/^\/(ar|en)(?=\/|$)/, "");
+      window.history.pushState(null, "", `${languagePath(next)}${suffix}${window.location.hash}`);
       setLang(next);
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     },
